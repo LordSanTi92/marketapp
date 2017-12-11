@@ -1,0 +1,38 @@
+<% provide(:title,"Home")%>
+<div class="jumbotron center">
+  <div class="container">
+    <%= link_to new_advertisement_path do %>
+      <button class="btn btn-primary">Add new advertisement</button>
+    <% end %>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% @adv.each_with_index do |adv,index| %>
+            <tr>
+              <td>
+                  <% if adv.images.first %>
+                    <%=image_tag adv.images.first.image.url, :size => "150x100" %>
+                  <% else %>
+                    N/A
+                  <% end %>
+              </td>
+              <td><%= adv.title %></td>
+              <td>
+                <%= adv.price %>
+                <%= adv.currency %>
+              </td>
+              <td><%= link_to "Check advertisement",advertisement_path(adv.id)%>
+            </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

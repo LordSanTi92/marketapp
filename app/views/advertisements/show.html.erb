@@ -1,0 +1,42 @@
+<% provide(:title,"Advertisement #{@adv.id}") %>
+<div class="container group">
+  <%= link_to root_path do %>
+    <button class="btn btn-primary">Back to list of advertisement</button>
+  <% end %>
+  <%= link_to edit_advertisement_path do %>
+    <button class="btn btn-info">Edit advertisement</button>
+  <% end %>
+  <%= link_to advertisement_path(@adv.id), :method => :delete do %>
+    <button class="btn btn-danger">Delete advertisement</button>
+  <% end %>
+</div>
+<div class="adv-grid">
+  <% if @adv.images.first %>
+    <%=content_tag(:div,nil,class:"firstImg",style:"background-image:url('#{@adv.images.first.image.url}')") %>
+  <% else %>
+    N/A
+  <% end %>
+  <p class="priceTag">
+    Price:
+    <span>
+      <%=@adv.price%>
+      <%=@adv.currency%>
+    </span>
+  </p>
+  <p class="mailTag">
+    Mail:
+    <%= mail_to "#{@adv.email}"%>
+  </p>
+  <h2>
+    <%= @adv.title %>
+  </h2>
+  <p>
+    <%= @adv.content%>
+  </p>
+  <h4>Gallery:</h4>
+  <div class="gallery-grid">
+    <% @img.each_with_index do |img,index|%>
+      <%=content_tag(:div,nil,style:"background-image:url('#{img.image.url}')")%>
+    <% end %>
+  </div>
+</div>

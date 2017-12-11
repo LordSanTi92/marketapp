@@ -1,0 +1,32 @@
+<% provide(:title,"Edit advertisement") %>
+<div class="container">
+  <%= link_to root_path do %>
+    <button class="back btn btn-default">Back to list of advertisements</button>
+  <% end %>
+
+  <h2>Update your advertisement</h2>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@adv) do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control' %>
+
+        <%= f.label :content %>
+        <%= f.text_area :content, class: 'form-control' %>
+
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %>
+
+        <%= f.label :price %>
+        <%= f.number_field :price, class: 'form-control' %>
+
+        <%= f.select :currency, options_for_select([['Select One'],'EUR','USD','PLN']), class: 'form-control' %>
+
+        <%= f.label :images %>
+        <%= file_field_tag "images[]", type: :file, multiple: true %>
+
+        <%= f.submit "Save changes", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
